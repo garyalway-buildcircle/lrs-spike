@@ -1,6 +1,6 @@
-import { XAPIStatement } from '../types/xapi';
+import { Statement } from '@xapi/xapi';
 
-export const sampleStatements: XAPIStatement[] = [
+export const sampleStatements: Statement[] = [
   {
     actor: {
       name: "John Doe",
@@ -36,7 +36,8 @@ export const sampleStatements: XAPIStatement[] = [
             definition: {
               name: {
                 "en-US": "Security Training"
-              }
+              },
+              type: "http://adlnet.gov/expapi/activities/category"
             }
           }
         ]
@@ -86,7 +87,8 @@ export const sampleStatements: XAPIStatement[] = [
             definition: {
               name: {
                 "en-US": "Compliance Training"
-              }
+              },
+              type: "http://adlnet.gov/expapi/activities/category"
             }
           }
         ]
@@ -140,7 +142,8 @@ export const sampleStatements: XAPIStatement[] = [
             definition: {
               name: {
                 "en-US": "Hands-on Training"
-              }
+              },
+              type: "http://adlnet.gov/expapi/activities/category"
             }
           }
         ]
@@ -150,7 +153,7 @@ export const sampleStatements: XAPIStatement[] = [
   }
 ];
 
-export const enterpriseActivityStatement: XAPIStatement = {
+export const enterpriseActivityStatement: Statement = {
   actor: {
     name: "Sarah Wilson",
     account: {
@@ -191,7 +194,8 @@ export const enterpriseActivityStatement: XAPIStatement = {
           definition: {
             name: {
               "en-US": "Leadership Development Track"
-            }
+            },
+            type: "http://adlnet.gov/expapi/activities/category"
           }
         }
       ],
@@ -201,7 +205,8 @@ export const enterpriseActivityStatement: XAPIStatement = {
           definition: {
             name: {
               "en-US": "Management Certification Program"
-            }
+            },
+            type: "http://adlnet.gov/expapi/activities/parent"
           }
         }
       ]

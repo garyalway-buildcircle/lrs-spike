@@ -1,5 +1,4 @@
-import XAPI from '@xapi/xapi';
-import { XAPIStatement } from '../types/xapi';
+import XAPI, { Statement, Actor, Verb, Activity } from '@xapi/xapi';
 import axios, { AxiosInstance } from 'axios';
 
 export class SQLLRSClient {
@@ -37,7 +36,7 @@ export class SQLLRSClient {
     }
   }
 
-  async storeStatement(statement: XAPIStatement): Promise<string[]> {
+  async storeStatement(statement: Statement): Promise<string[]> {
     try {
       const response = await this.client.sendStatement({ statement });
       return Array.isArray(response?.data) ? response.data : [response?.data || ''];
@@ -47,7 +46,7 @@ export class SQLLRSClient {
     }
   }
 
-  async storeStatements(statements: XAPIStatement[]): Promise<string[]> {
+  async storeStatements(statements: Statement[]): Promise<string[]> {
     try {
       const response = await this.client.sendStatements({ statements });
       return Array.isArray(response?.data) ? response.data : [response?.data || ''];
