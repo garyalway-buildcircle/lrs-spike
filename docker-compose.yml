@@ -1,0 +1,46 @@
+volumes:
+  postgres_data:
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: lrsql_user
+      POSTGRES_PASSWORD: lrsql_password
+      POSTGRES_DB: lrsql
+    ports:
+      - "6432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lrsql_user -d lrsql"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  sql-lrs:
+    image: yetanalytics/lrsql:latest
+    command:
+      - /lrsql/bin/run_postgres.sh
+    ports:
+      - "9080:8080"
+    volumes:
+      - ./config:/lrsql/config
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      LRSQL_ADMIN_USER_DEFAULT: admin
+      LRSQL_ADMIN_PASS_DEFAULT: admin_password
+      LRSQL_DB_HOST: postgres
+      LRSQL_DB_NAME: lrsql
+      LRSQL_DB_USER: lrsql_user
+      LRSQL_DB_PASSWORD: lrsql_password
+      LRSQL_POOL_INITIALIZATION_FAIL_TIMEOUT: 10000
+      LRSQL_ALLOW_ALL_ORIGINS: true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
