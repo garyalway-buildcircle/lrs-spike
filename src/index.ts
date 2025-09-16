@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { SQLLRSClient } from './lib/sql-lrs-client';
+import { SQLLRSClient } from './lib/lrs-client';
 import { sampleStatements, enterpriseActivityStatement } from './examples/sample-statements';
 
 dotenv.config();

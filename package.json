@@ -1,7 +1,7 @@
 {
-  "name": "sql-lrs-demo",
+  "name": "lrs-demo",
   "version": "1.0.0",
-  "description": "SQL LRS demo with Node.js, TypeScript, and PostgreSQL",
+  "description": "LRS demo",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
