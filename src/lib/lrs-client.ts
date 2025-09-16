@@ -1,21 +1,16 @@
-import XAPI, { Statement, Actor, Verb, Activity } from '@xapi/xapi';
+import XAPI, { Statement } from '@xapi/xapi';
 import axios, { AxiosInstance } from 'axios';
 
 export class SQLLRSClient {
   private client: any;
-  private baseUrl: string;
   private axiosClient: AxiosInstance;
 
   constructor(baseUrl: string, username: string, password: string) {
-    this.baseUrl = baseUrl;
-    
-    // Initialize the xAPI client with API key auth
     this.client = new XAPI({
       endpoint: `${baseUrl}/xapi/`,
       auth: `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`
     });
 
-    // Keep axios client for health checks and fallback
     this.axiosClient = axios.create({
       baseURL: baseUrl,
       headers: {

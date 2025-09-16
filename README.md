@@ -1,4 +1,4 @@
-# SQL LRS Enterprise Demo
+# LRS Demo
 
 ## Enterprise Use Cases Demonstrated
 
@@ -64,51 +64,6 @@ const competencyMastered = {
 };
 await client.storeStatement(competencyMastered);
 ```
-
-## Analytics and Reporting
-
-### Direct Database Access
-SQL LRS stores data in PostgreSQL, enabling direct SQL queries:
-
-```sql
--- Connect to PostgreSQL
-docker exec -it sql-lrs-demo-postgres-1 psql -U lrsql_user -d lrsql
-
--- Query statements by verb
-SELECT * FROM xapi_statement WHERE verb_id = 'http://adlnet.gov/expapi/verbs/completed';
-
--- Analyze completion rates by activity
-SELECT 
-  activity_id,
-  COUNT(*) as attempts,
-  SUM(CASE WHEN result_completion = true THEN 1 ELSE 0 END) as completions
-FROM xapi_statement 
-GROUP BY activity_id;
-```
-
-## API Reference
-
-### SQLLRSClient Methods
-
-#### `healthCheck(): Promise<boolean>`
-Check if SQL LRS is running and accessible.
-
-#### `storeStatement(statement: XAPIStatement): Promise<string[]>`
-Store a single xAPI statement.
-
-#### `storeStatements(statements: XAPIStatement[]): Promise<string[]>`
-Store multiple xAPI statements in a batch.
-
-#### `getStatements(params?): Promise<any>`
-Retrieve statements with optional filtering:
-- `agent`: Filter by actor
-- `verb`: Filter by verb ID
-- `activity`: Filter by activity ID
-- `since`/`until`: Time range filtering
-- `limit`: Maximum number of results
-
-#### `about(): Promise<any>`
-Get LRS information and capabilities.
 
 ## Resources
 
