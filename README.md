@@ -1,7 +1,5 @@
 # SQL LRS Enterprise Demo
 
-![Architecture](docs/architecture.png)
-
 ## Overview
 
 This repository demonstrates SQL LRS integration for enterprise learning analytics, supporting RFC 190 - Learn Platform - LRSQL as LRS. The implementation showcases xAPI statement patterns, Docker deployment, and PostgreSQL integration for business intelligence.
